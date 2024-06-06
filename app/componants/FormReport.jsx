@@ -2,8 +2,8 @@ import { useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
-import Loading from "../componants/Loading";
-import Errorform from "../componants/Errorform";
+import Loading from "./Loading";
+import Errorform from "./Errorform";
 import { useRouter } from "next/navigation";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -27,7 +27,6 @@ const InvoiceForm = () => {
       date_invoice: Yup.string()
         .required("مطلوب")
         .matches(/^\d{4}-\d{2}-\d{2}$/, "تاريخ غير صالح"),
-     
       sku: Yup.string()
         .required("مطلوب")
         .max(255, "الرمز يجب أن يكون أقل من 255 حرفًا"),
@@ -62,10 +61,7 @@ const InvoiceForm = () => {
         ).then(()=> {
           setFormVisible(false)
           window.location.reload()
-        }
-      );
-     
-      
+        });
       } catch (error) {
         // Handle form submission error
         console.error("Error submitting form", error);
@@ -78,7 +74,7 @@ const InvoiceForm = () => {
   if (!isFormVisible) return null;
 
   return (
-    <div className="flex min-h-screen bg-blue-50  justify-center items-center p-4">
+    <div className="flex min-h-screen bg-blue-50 justify-center items-center p-4">
       <div className="bg-blue-200 rounded-es-3xl rounded-tr-3xl flex-col flex justify-around items-center w-full max-w-2xl p-4 max-h-full overflow-y-auto relative">
         <h1 className="text-gray-700 text-center text-2xl font-bold">
           نموذج الفاتورة
@@ -105,7 +101,7 @@ const InvoiceForm = () => {
               onChange={(date) =>
                 formik.setFieldValue(
                   "date_invoice",
-                  date.toISOString().split("T")[0]
+                  date ? date.toISOString().split("T")[0] : ""
                 )
               }
               dateFormat="yyyy-MM-dd"
@@ -120,10 +116,6 @@ const InvoiceForm = () => {
               <Errorform errors={formik.errors.date_invoice} />
             ) : null}
           </div>
-
-          
-
-         
 
           {[
             { label: "SKU", id: "sku", type: "text", placeholder: "أدخل SKU" },

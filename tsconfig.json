@@ -21,6 +21,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/context/Context.jsx", "app/dashboard/page.jsx", "app/componants/FormReport.jsx", "app/componants/Loading.jsx", "app/componants/navbar.jsx", "app/componants/Errorform.jsx", "app/login/page.jsx", "app/register/page.jsx", "app/layout.jsx", "app/page.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/context/Context.jsx", "app/dashboard/page.jsx", "app/componants/FormReport.jsx", "app/componants/Loading.jsx", "app/componants/navbar.jsx", "app/componants/Errorform.jsx", "app/login/page.jsx", "app/register/page.jsx", "app/layout.tsx", "app/page.jsx"],
   "exclude": ["node_modules"]
 }

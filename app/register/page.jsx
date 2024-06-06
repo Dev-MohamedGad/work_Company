@@ -7,18 +7,12 @@ import Loading from "../componants/Loading";
 import Errorform from "../componants/Errorform";
 import { useRouter } from "next/navigation";
 
-interface FormValues {
-  email: string;
-  name: string;
-  password: string;
-  password2: string;
-  tc: boolean;
-}
 
-const RegisterForm: React.FC = () => {
+
+const RegisterForm = () => {
   const router = useRouter();
 
-  const formik = useFormik<FormValues>({
+  const formik = useFormik({
     initialValues: {
       email: "",
       name: "",
@@ -48,7 +42,7 @@ const RegisterForm: React.FC = () => {
       );
 
         // Handle successful registration
-      } catch (error:any) {
+      } catch (error) {
         // Handle registration error
       } finally {
         setSubmitting(false);

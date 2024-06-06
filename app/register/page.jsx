@@ -12,7 +12,7 @@ import { useRouter } from "next/navigation";
 const RegisterForm = () => {
   const router = useRouter();
 
-  const formik = useFormik<FormValues>({
+  const formik = useFormik({
     initialValues: {
       email: "",
       name: "",

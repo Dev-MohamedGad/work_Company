@@ -5,7 +5,7 @@ import img from "../../public/Logo.png";
 import ContextProvider, { MyContext } from "../context/Context";
 import Link from "next/link";
 export default function Navbar() {
-  let context: any = useContext(MyContext);
+  let context = useContext(MyContext);
 
   return (
     <ContextProvider> <div className=" bg-blue-400 flex justify-between pl-10 mx-auto w-full items-center">

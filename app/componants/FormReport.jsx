@@ -49,19 +49,21 @@ const InvoiceForm = () => {
     }),
     onSubmit: async (values, { setSubmitting }) => {
       try {
-        await axios.post(
-          "http://172.232.193.157:8000/maintenance/report-maintenance/",
-          values,
-          {
-            headers: {
-              "Authorization":
-               "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE3ODY3OTU0LCJpYXQiOjE3MTc1MjIzNTQsImp0aSI6ImJiNjFhMGQxZmVhNjQ3MzU4NDhmNjViZDc5OWI4MmQzIiwidXNlcl9pZCI6Mn0.HR7AE-mqKirIq_-kQ59OjFc7H62kRhKEUF0zoIbusL4"
+        await axios
+          .post(
+            "http://172.232.193.157:8000/maintenance/report-maintenance/",
+            values,
+            {
+              headers: {
+                Authorization:
+                  "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE3ODY3OTU0LCJpYXQiOjE3MTc1MjIzNTQsImp0aSI6ImJiNjFhMGQxZmVhNjQ3MzU4NDhmNjViZDc5OWI4MmQzIiwidXNlcl9pZCI6Mn0.HR7AE-mqKirIq_-kQ59OjFc7H62kRhKEUF0zoIbusL4",
+              },
             }
-          }
-        ).then(()=> {
-          setFormVisible(false)
-          window.location.reload()
-        });
+          )
+          .then(() => {
+            setFormVisible(false);
+            window.location.reload();
+          });
       } catch (error) {
         // Handle form submission error
         console.error("Error submitting form", error);
@@ -81,8 +83,9 @@ const InvoiceForm = () => {
         </h1>
         <button
           onClick={() => {
-            window.location.reload()
-            setFormVisible(false)}}
+            window.location.reload();
+            setFormVisible(false);
+          }}
           className="absolute top-4 left-4 bg-red-300 text-white rounded-full p-2 hover:bg-red-700 focus:outline-none"
         >
           X
@@ -101,7 +104,7 @@ const InvoiceForm = () => {
               onChange={(date) =>
                 formik.setFieldValue(
                   "date_invoice",
-                  date ? date.toISOString().split("T")[0] : ""
+                  date?.toISOString().split("T")[0]
                 )
               }
               dateFormat="yyyy-MM-dd"

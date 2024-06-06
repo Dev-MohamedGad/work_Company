@@ -105,7 +105,7 @@ const InvoiceForm = () => {
               onChange={(date) =>
                 formik.setFieldValue(
                   "date_invoice",
-                  date.toISOString().split("T")[0]
+                  date?.toISOString().split("T")[0]
                 )
               }
               dateFormat="yyyy-MM-dd"

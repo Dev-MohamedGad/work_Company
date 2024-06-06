@@ -7,15 +7,9 @@ import Loading from "../componants/Loading";
 import Errorform from "../componants/Errorform";
 import { useRouter } from "next/navigation";
 
-interface FormValues {
-  email: string;
-  name: string;
-  password: string;
-  password2: string;
-  tc: boolean;
-}
 
-const RegisterForm: React.FC = () => {
+
+const RegisterForm = () => {
   const router = useRouter();
 
   const formik = useFormik<FormValues>({

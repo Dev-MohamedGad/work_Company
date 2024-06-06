@@ -42,7 +42,7 @@ const RegisterForm = () => {
       );
 
         // Handle successful registration
-      } catch (error:any) {
+      } catch (error) {
         // Handle registration error
       } finally {
         setSubmitting(false);

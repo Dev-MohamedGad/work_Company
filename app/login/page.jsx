@@ -26,16 +26,17 @@ const LoginForm = () => {
           .then((res) =>{
             console.log(res);
             
-            if(res)router.push("/dashboard")});
+            if(res){
+              router.replace("/dashboard")
+            }})
+            
+            
         // Handle successful login
 
       } catch (error) {
         // Handle login error
       } finally {
         setSubmitting(false);
-        console.log("submit");
-
-        router.push("/dashboard");
       }
     },
   });

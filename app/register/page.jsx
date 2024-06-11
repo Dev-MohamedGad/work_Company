@@ -38,7 +38,8 @@ const RegisterForm = () => {
           password: values.password,
           password2: values.password2,
           tc: values.tc,
-        }).then(()=>router.push("/dashboard")
+        }).then((e)=>{
+          router.push("/login")}
       );
 
         // Handle successful registration

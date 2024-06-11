@@ -7,9 +7,15 @@ import Loading from "../componants/Loading";
 import Errorform from "../componants/Errorform";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { useContext } from "react";
+import { MyContext } from "../context/Context";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const LoginForm = () => {
   const router = useRouter();
+  const { settoken } = useContext(MyContext);
+
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -21,20 +27,18 @@ const LoginForm = () => {
     }),
     onSubmit: async (values, { setSubmitting }) => {
       try {
-        const response = await axios
-          .post("http://172.232.193.157:8000/api/login/", values)
-          .then((res) =>{
-            console.log(res);
-            
-            if(res){
-              router.replace("/dashboard")
-            }})
-            
-            
-        // Handle successful login
+        const response = await axios.post(
+          "http://172.232.193.157:8000/api/login/",
+          values
+        );
+        localStorage.setItem("token", response.data.token.access);
 
+        settoken(localStorage.getItem("token"));
+        console.log(localStorage.getItem("token"));
+        toast.success("تم تسجيل الدخول بنجاح!");
+        router.replace("/dashboard");
       } catch (error) {
-        // Handle login error
+        toast.error("فشل تسجيل الدخول. حاول مرة أخرى.");
       } finally {
         setSubmitting(false);
       }
@@ -42,26 +46,26 @@ const LoginForm = () => {
   });
 
   return (
-    <div className=" flex w-full h-full  bg-blue-400 justify-center  items-center">
-      <div className=" h-2/4 w-3/4 bg-blue-200 rounded-es-3xl  rounded-tr-3xl flex-col flex justify-around items-center">
-        <h1 className="text-gray-700 text-center  text-2xl font-bold">
-          تسجيل الدخول{" "}
+    <div className="flex w-full h-full bg-blue-400 justify-center items-center">
+      <div className="h-2/4 w-3/4 bg-blue-200 rounded-es-3xl rounded-tr-3xl flex-col flex justify-around items-center">
+        <h1 className="text-gray-700 text-center text-2xl font-bold">
+          تسجيل الدخول
         </h1>
 
-        <form onSubmit={formik.handleSubmit} className="w-full  px-10">
+        <form onSubmit={formik.handleSubmit} className="w-full px-10">
           <div className="mb-2">
             <label
               htmlFor="email"
-              className="block text-gray-700 text-sm  font-bold mb-2"
+              className="block text-gray-700 text-sm font-bold mb-2"
             >
               الأميل
             </label>
             <input
               id="email"
-              placeholder="أدخل البريد الالكترونى "
+              placeholder="أدخل البريد الالكترونى"
               type="email"
               {...formik.getFieldProps("email")}
-              className={` shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
+              className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
                 formik.touched.email && formik.errors.email
                   ? "border-red-500"
                   : ""
@@ -80,7 +84,7 @@ const LoginForm = () => {
             </label>
             <input
               id="password"
-              placeholder="أدخل كلمة المرور "
+              placeholder="أدخل كلمة المرور"
               type="password"
               {...formik.getFieldProps("password")}
               className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
@@ -94,21 +98,19 @@ const LoginForm = () => {
             ) : null}
           </div>
 
-          <div className="flex items-center  justify-center">
+          <div className="flex items-center justify-center">
             <button className="mx-2" onClick={() => {}}>
-              <Link className=" text-xl" href={"/register"}>
-                {" "}
+              <Link className="text-xl" href={"/register"}>
                 إنشاء حساب
               </Link>
             </button>
             <button
               type="submit"
-              className={` ${
+              className={`${
                 !formik.dirty
                   ? "bg-blue-300 cursor-not-allowed"
                   : "bg-blue-600 hover:bg-blue-700"
-              }  text-white font-bold py-2 px-6 rounded-full focus:outline-none focus:shadow-outline
-              `}
+              } text-white font-bold py-2 px-6 rounded-full focus:outline-none focus:shadow-outline`}
               disabled={formik.isSubmitting || !formik.dirty}
             >
               {formik.isSubmitting ? <Loading /> : "تسجيل"}
@@ -116,6 +118,18 @@ const LoginForm = () => {
           </div>
         </form>
       </div>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </div>
   );
 };

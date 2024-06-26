@@ -32,7 +32,7 @@ const RegisterForm = () => {
     }),
     onSubmit: async (values, { setSubmitting }) => {
       try {
-        const response = await axios.post("http://172.232.193.157:8000/api/register/", {
+        const response = await axios.post("https://172.232.193.157:8000/api/register/", {
           name: values.name,
           email: values.email,
           password: values.password,

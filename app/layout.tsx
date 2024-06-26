@@ -21,6 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head><meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" /></head>
       <body dir="rtl" className={roboto.className +' h-screen' }>
      <main className="flex flex-col w-screen h-screen"> <ContextProvider>
         <Navbar/>

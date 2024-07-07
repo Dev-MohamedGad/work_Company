@@ -28,7 +28,7 @@ const LoginForm = () => {
     onSubmit: async (values, { setSubmitting }) => {
       try {
         const response = await axios.post(
-          "https://172.232.193.157:8000/api/login/",
+          "http://172.232.193.157:8000/api/login/",
           values
         );
         localStorage.setItem("token", response.data.token.access);

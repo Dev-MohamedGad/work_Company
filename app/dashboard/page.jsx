@@ -41,7 +41,7 @@ export default function Dashboard() {
       if (localStorage.getItem("token"))
         try {
           const response = await fetch(
-            `https://172.232.193.157:8000/maintenance/report-maintenance/?page=${currentPage}`,
+            `http://172.232.193.157:8000/maintenance/report-maintenance/?page=${currentPage}`,
             {
               headers: {
                 Authorization: `Bearer ${localStorage.getItem("token")}`,

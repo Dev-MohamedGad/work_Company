@@ -18,21 +18,22 @@ const LoginForm = () => {
 
   const formik = useFormik({
     initialValues: {
-      email: "",
+      username: "",
       password: "",
     },
     validationSchema: Yup.object({
-      email: Yup.string().email("الاميل غير صحيح").required("مطلوب"),
+      username: Yup.string().required("مطلوب"),
       password: Yup.string().required("مطلوب "),
     }),
     onSubmit: async (values, { setSubmitting }) => {
       try {
+        console.log(values);
+
         const response = await axios.post(
           "http://172.232.193.157:8000/api/login/",
           values
         );
         localStorage.setItem("token", response.data.token.access);
-
         settoken(localStorage.getItem("token"));
         console.log(localStorage.getItem("token"));
         toast.success("تم تسجيل الدخول بنجاح!");
@@ -58,21 +59,21 @@ const LoginForm = () => {
               htmlFor="email"
               className="block text-gray-700 text-sm font-bold mb-2"
             >
-              الأميل
+              أسم المسخ 
             </label>
             <input
-              id="email"
+              id="username"
               placeholder="أدخل البريد الالكترونى"
-              type="email"
-              {...formik.getFieldProps("email")}
+              type="text"
+              {...formik.getFieldProps("username")}
               className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
-                formik.touched.email && formik.errors.email
+                formik.touched.username && formik.errors.username
                   ? "border-red-500"
                   : ""
               }`}
             />
-            {formik.touched.email && formik.errors.email ? (
-              <Errorform errors={formik.errors.email} />
+            {formik.touched.username && formik.errors.username ? (
+              <Errorform errors={formik.errors.username} />
             ) : null}
           </div>
           <div className="mb-6">

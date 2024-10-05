@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@fontsource/cairo": "^5.0.20",
+    "@heroicons/react": "^2.1.5",
     "axios": "^1.7.2",
     "date-fns": "^3.6.0",
     "formik": "^2.4.6",

@@ -50,7 +50,7 @@ const InvoiceForm = () => {
     onSubmit: async (values, { setSubmitting }) => {
       try {
         await axios.post(
-          "http://172.232.193.157:8000/maintenance/report-maintenance/",
+          "https://172.232.193.157:8000/maintenance/report-maintenance/",
           values,
           {
             headers: {

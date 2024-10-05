@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Roboto } from "next/font/google";
 import "./globals.css";
-import Navbar from "./componants/navbar";
+import Navbar from "./componants/Navbar";
 import ContextProvider from "./context/Context";
 
 
@@ -25,6 +25,7 @@ export default function RootLayout({
       <body dir="rtl" className={roboto.className +' h-screen' }>
      <main className="flex flex-col w-screen h-screen"> <ContextProvider>
         <Navbar/>
+      
         {children}</ContextProvider></main>
         </body>
     </html>
